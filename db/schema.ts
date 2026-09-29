@@ -17,6 +17,9 @@ export const repositories = pgTable("repositories", {
   language: text("language"),
   owner: text("owner").notNull(),
   userid: integer("userid").default(1).notNull(),
+  targetDomain: varchar("target_domain", { length: 500 }).default("http://localhost:3000"),
+  globalInstruction: text("global_instruction"),
+
 });
 
 export const TestCasesTable = pgTable("test_cases", {
@@ -28,6 +31,7 @@ export const TestCasesTable = pgTable("test_cases", {
   repoName: varchar("repo_name", { length: 255 }).notNull(),
   repoOwner: varchar("repo_owner", { length: 255 }).notNull(),
   branch: varchar("branch", { length: 100 }).default("main"),
+
 
   // Main test case data
   title: varchar("title", { length: 500 }).notNull(),
@@ -43,8 +47,10 @@ export const TestCasesTable = pgTable("test_cases", {
   // Later you can update these fields
   browserbaseScript: text("browserbase_script"),
   status: varchar("status", { length: 100 }).default("generated"),
+  targetDomain: varchar("target_domain", { length: 500 }).default("http://localhost:3000"),
 
   createdAt: timestamp("created_at").defaultNow(),
+  globalInstruction: text("global_instruction"),
 });
 
 export type User = typeof users.$inferSelect;

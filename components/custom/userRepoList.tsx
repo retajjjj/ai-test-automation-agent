@@ -9,9 +9,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Button } from '@/components/ui/button'
-import { CheckCircle2, ListChecks, Loader2, Sparkles, TrendingUp, XCircle } from 'lucide-react'
+import { CheckCircle2, Globe2Icon, Link2Icon, ListChecks, Loader2, Settings2, Sparkles, TrendingUp, XCircle } from 'lucide-react'
 import axios from 'axios'
 import TestcaseList from './TestcaseList'
+import RepoSettings from './RepoSettings'
 
 export type TestCase = {
   id: number;
@@ -28,6 +29,8 @@ export type TestCase = {
   repoName: string;
   repoId: number;
   repoOwner: string;
+  globalInstruction: string;
+  targetDomain: string;
 }
 
 function UserRepoList({ repos }: { repos: Repo[] }) {
@@ -154,6 +157,28 @@ function UserRepoList({ repos }: { repos: Repo[] }) {
               {/* Expanded Content */}
               <AccordionContent>
                 <div className="pt-4 space-y-5">
+                    <div className="bg-slate-50 dark:bg-slate-900/50 p-3.5 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center justify-between gap-4 shadow-sm">
+                {/* Left: Icon & Title */}
+                <div className="flex items-center gap-2.5 shrink-0">
+                    <div className="p-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700/80">
+                        <Link2Icon className="h-4 w-4 text-slate-600 dark:text-slate-400" />
+                </div>
+                <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                Target Domain
+                </span>
+            </div>
+
+            {/* Center: Domain Value Badge */}
+            <div className="flex-1 max-w-xs">
+                <span className="block w-full bg-white dark:bg-slate-950 px-3 py-1 border border-slate-200 dark:border-slate-800 rounded-md text-xs font-mono font-medium text-slate-800 dark:text-slate-200 truncate text-center">
+                {repo.targetDomain || 'Not Set'}
+                </span>
+            </div>
+
+            {/* Right: Green Action Button */}
+            <RepoSettings repo={repo} />
+            
+            </div>
                   {/* Status Cards */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     <StatusCard
@@ -207,7 +232,7 @@ function UserRepoList({ repos }: { repos: Repo[] }) {
                     </div>
 
                     <Button 
-                      className="gap-2 shrink-0" 
+                      className="gap-2 shrink-0 bg-emerald-600" 
                       disabled={isGenerating || testcaseLoading} 
                       onClick={() => handleGenerateTestCases(repo)}
                     >
