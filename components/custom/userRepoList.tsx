@@ -31,6 +31,7 @@ export type TestCase = {
   repoOwner: string;
   globalInstruction: string;
   targetDomain: string;
+  browserbaseScript: string;
 }
 
 function UserRepoList({ repos }: { repos: Repo[] }) {

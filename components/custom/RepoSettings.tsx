@@ -60,7 +60,7 @@ function RepoSettings({ repo }: { repo: Repo }) {
   return (
     <div>
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogTrigger asChild>
+        <DialogTrigger>
           <Button className="gap-2 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white dark:bg-emerald-600 dark:hover:bg-emerald-500 font-medium text-xs h-8 px-3 rounded-lg shadow-xs transition-colors shrink-0">
             <Settings2 className="h-3.5 w-3.5" />
             <span>Project Configuration</span>
@@ -108,7 +108,7 @@ function RepoSettings({ repo }: { repo: Repo }) {
           </div>
 
           <DialogFooter className="gap-2 sm:gap-0 pt-2 border-t border-slate-100 dark:border-slate-800/80">
-            <DialogClose asChild>
+            <DialogClose>
               <Button
                 type="button"
                 variant="outline"
