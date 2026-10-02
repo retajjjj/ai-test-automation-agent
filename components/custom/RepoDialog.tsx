@@ -22,6 +22,8 @@ export type Repo = {
     private: boolean;
     language: string;
     owner: string;
+    globalInstruction: string;
+    targetDomain: string;
 };
 
 

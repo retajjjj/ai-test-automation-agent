@@ -4,6 +4,7 @@ import { Checkbox } from '../ui/checkbox'
 import { Badge } from "@/components/ui/badge"
 import { Button } from '../ui/button'
 import { Play, SettingsIcon, RefreshCw } from 'lucide-react'
+import TestcaseSettingsDialog from './TestcaseSettingsDialog'
 
 function TestcaseList({testCases}: {testCases: TestCase[]}) {
     const [selectedTestCases, setSelectedTestCases] = React.useState<TestCase[]>([]);
@@ -38,9 +39,8 @@ function TestcaseList({testCases}: {testCases: TestCase[]}) {
           <div className="flex gap-2 items-center">
             <Badge variant="secondary"> {testCase.type}</Badge>
             <Badge variant="secondary"> Pending</Badge>
-            <Button size={"icon"} variant={"secondary"} className="h-8 w-8 p-0 rounded-full">
-                <SettingsIcon className="h-4 w-4"/>
-            </Button>
+            <TestcaseSettingsDialog selectedTestCase={testCase} />
+          
 
           </div>
           </div>
